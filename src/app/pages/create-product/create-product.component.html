@@ -1,0 +1,79 @@
+<form class="space-y-5" (ngSubmit)="onSubmit()" #productForm="ngForm" novalidate>
+    <div>
+      <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        [(ngModel)]="product.name"
+        #name="ngModel"
+        required
+        maxlength="100"
+        class="block w-full py-3 px-3 mt-2 border-2 border-gray-100 rounded-md focus:outline-none focus:border-gray-200"
+      />
+      <p *ngIf="name.invalid && name.touched" class="text-red-500 text-sm">El nombre es obligatorio.</p>
+    </div>
+  
+    <div>
+      <label for="description" class="block text-sm font-medium text-gray-700">Descripción</label>
+      <textarea
+        id="description"
+        name="description"
+        [(ngModel)]="product.description"
+        #description="ngModel"
+        maxlength="255"
+        class="block w-full py-3 px-3 mt-2 border-2 border-gray-100 rounded-md focus:outline-none focus:border-gray-200"
+      ></textarea>
+    </div>
+  
+    <div>
+      <label for="imageUrl" class="block text-sm font-medium text-gray-700">Imagen URL</label>
+      <input
+        id="imageUrl"
+        name="imageUrl"
+        type="text"
+        [(ngModel)]="product.imageUrl"
+        #imageUrl="ngModel"
+        required
+        class="block w-full py-3 px-3 mt-2 border-2 border-gray-100 rounded-md focus:outline-none focus:border-gray-200"
+      />
+    </div>
+  
+    <div>
+      <label for="quantity" class="block text-sm font-medium text-gray-700">Cantidad</label>
+      <input
+        id="quantity"
+        name="quantity"
+        type="number"
+        [(ngModel)]="inventory.quantity"
+        #quantity="ngModel"
+        required
+        min="0"
+        class="block w-full py-3 px-3 mt-2 border-2 border-gray-100 rounded-md focus:outline-none focus:border-gray-200"
+      />
+      <p *ngIf="quantity.invalid && quantity.touched" class="text-red-500 text-sm">La cantidad no puede ser negativa.</p>
+    </div>
+  
+    <div>
+      <label for="expirationDate" class="block text-sm font-medium text-gray-700">Fecha de Caducidad</label>
+      <input
+        id="expirationDate"
+        name="expirationDate"
+        type="date"
+        [(ngModel)]="inventory.expirationDate"
+        #expirationDate="ngModel"
+        required
+        class="block w-full py-3 px-3 mt-2 border-2 border-gray-100 rounded-md focus:outline-none focus:border-gray-200"
+      />
+      <p *ngIf="expirationDate.invalid && expirationDate.touched" class="text-red-500 text-sm">La fecha de caducidad es obligatoria.</p>
+    </div>
+  
+    <button
+      type="submit"
+      [disabled]="productForm.invalid"
+      class="w-full py-3 mt-10 bg-[#063970] rounded-md font-medium text-white uppercase focus:outline-none hover:shadow-none"
+    >
+      Crear Producto
+    </button>
+  </form>
+  
